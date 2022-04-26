@@ -30,6 +30,3 @@ def ruletka(start, end):
             print('You won')
 
 print(IntInput())
-
-print(IntInput.__sizeof__())
-print(ruletka.__sizeof__())
