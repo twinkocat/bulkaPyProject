@@ -1,30 +1,48 @@
 import random
 
-def IntInput():
-    start=input("Первое число: ")
-    end=input("Второе число: ")
+
+def int_input():
+    """Ввод с проверкой и присваиванием численного значения"""
+    start = input("Первое число: ")
+    end = input("Второе число: ")
+
     if start.isdigit() and end.isdigit():
         start, end = int(start), int(end)
-        ruletka(start, end)
     else:
-        print('Необходимо указать целочисленное значение.')
-        return IntInput()
+        print('Необходимо указать целочисленное значение для первого и второго числа.')
+        return int_input()
 
-def ruletka(start, end):
     if start >= end:
         print('Первое число не может быть равно или больше второго')
-        IntInput()
+        int_input()
     else:
         print(f'Введите число от {start} до {end}:')
-        a = int(input())
-        if a > end:
-            print(f'Введите значение в диапазоне от {start} до {end}')
-            return ruletka(start, end)
+        random_game(start, end)
 
-        b = random.randint(start, end)
-        while b != a:
-            print('Попробуйте еще раз!')
-            return ruletka(start, end)
-        else:
-            print('Вы угадали!')
-print(IntInput())
+
+def random_game(start, end):
+    """ Тело программы: создание диапазона случайных чисел из ранее вводимых;
+        ввод числа "a" пользователем с проверкой, что оно в диапазоне наших значений, а так-же быть числом;
+    """
+    a = input()
+
+    if a.isdigit():
+        a = int(a)
+    else:
+        print("Вводимое Вами поле должно быть ЧИСЛОМ")
+        return random_game(start, end)
+
+    if a < start or a > end:
+        print(f"Число должно быть в диапазоне от {start} до {end}")
+        return random_game(start, end)
+
+    b = random.randint(start, end)
+
+    while b != a:
+        print('Попробуйте еще раз!')
+        return random_game(start, end)
+    else:
+        print('Вы угадали!')
+
+
+print(int_input())
