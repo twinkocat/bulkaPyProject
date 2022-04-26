@@ -1,32 +1,30 @@
 import random
 
 def IntInput():
-    start=input()
-    end=input()
+    start=input("Первое число: ")
+    end=input("Второе число: ")
     if start.isdigit() and end.isdigit():
-        start=int(start)
-        end=int(end)
+        start, end = int(start), int(end)
         ruletka(start, end)
     else:
-        print('smth wrong')
+        print('Необходимо указать целочисленное значение.')
         return IntInput()
 
 def ruletka(start, end):
-    if start > end:
-        print('smth wrong')
+    if start >= end:
+        print('Первое число не может быть равно или больше второго')
         IntInput()
     else:
-        print(f'{start} to {end}')
+        print(f'Введите число от {start} до {end}:')
         a = int(input())
-        if a > 10:
-            print('smth wrong')
+        if a > end:
+            print(f'Введите значение в диапазоне от {start} до {end}')
             return ruletka(start, end)
 
         b = random.randint(start, end)
         while b != a:
-            print('You lose')
+            print('Попробуйте еще раз!')
             return ruletka(start, end)
         else:
-            print('You won')
-
+            print('Вы угадали!')
 print(IntInput())
